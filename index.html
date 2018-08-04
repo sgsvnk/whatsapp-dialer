@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>
+      WhatsApp2Number | Send WhatsApp message to any phone number
+    </title>
+  </head>
+  <body>
+    <form>
+      <input type="number" id="phoneNumber"/>
+
+      <button type="submit" id="submitButton">Send message</button>
+    </form>
+    <script>
+      (function() {
+        document.getElementById("submitButton")
+          .addEventListener("click", function(event) {
+            event.preventDefault();
+            const phoneNumber = document.getElementById("phoneNumber").value;
+
+            window.location.href = "https://api.whatsapp.com/send?phone=" + phoneNumber;
+          });
+      })();
+    </script>
+  </body>
+</html>
