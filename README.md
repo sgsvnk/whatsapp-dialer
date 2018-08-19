@@ -1,4 +1,4 @@
-# whatsapp2number
+# WhatsApp Dialer
 
 
 [Use the web version here](http://sgsvenkatesh.github.io/whatsapp-dialer)
