@@ -5,8 +5,8 @@
   "background_color": "#59bba6",
   "display": "standalone",
   "orientation": "portrait",
-  "Scope": "/",
-  "start_url": "/",
+  "Scope": "/whatsapp-dialer/",
+  "start_url": "/whatsapp-dialer/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
