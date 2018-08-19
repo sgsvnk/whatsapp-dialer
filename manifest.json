@@ -3,7 +3,7 @@
   "short_name": "WhatsApp Dialer",
   "theme_color": "#59bba6",
   "background_color": "#59bba6",
-  "display": "browser",
+  "display": "standalone",
   "orientation": "portrait",
   "Scope": "/whatsapp-dialer/",
   "start_url": "/whatsapp-dialer/",
