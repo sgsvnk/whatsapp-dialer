@@ -12,6 +12,7 @@
   - Cache the country codes list
 - Prompt for install the web app s
 - [DONE] Support for other countries
+- [DONE] Automatically select country from user IP location
 - Color browser address bar to match the theme color 
 - Support for version upgrades of PWA
   - How to fetch new bundles from PWA? 
