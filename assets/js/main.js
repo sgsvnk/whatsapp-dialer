@@ -1,5 +1,5 @@
 (function() {
-  const constHeightOfElements = 454;
+  const constHeightOfElements = 439;
   const adjustFluidHeight = constHeightOfElements => {
     const fluidHeightLeft = window.innerHeight - constHeightOfElements;
     document.getElementsByClassName("number-row")[0].style.margin = `calc(${fluidHeightLeft}px/3) auto`;

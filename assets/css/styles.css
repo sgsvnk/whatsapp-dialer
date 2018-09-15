@@ -1,7 +1,7 @@
 body {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
   max-width: 100%;
-  padding: 20px;
+  padding: 20px 20px 8px;
 }
 
 #heading {
@@ -60,12 +60,13 @@ hr {
 }
 
 .app-footer {
-  padding: 20px 0 0;
+  padding: 12px 0 0;
   border-top: 1px solid #DADFE1;
   box-sizing: border-box;
   max-width: 100%;
   font-size: 12px;
   color: #777;
+  line-height: 20px;
 }
 
 a.footer-link {
