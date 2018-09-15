@@ -1,0 +1,69 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+  max-width: 100%;
+  padding: 20px;
+}
+
+#heading {
+  padding: 30px 0;
+  text-align: center;
+}
+
+hr {
+  margin-bottom: 140px;
+  color: #DADFE1;
+  border: none;
+  border-top: 1px solid #DADFE1;
+}
+
+#phoneNumber, #select-country {
+  width: 80%;
+  margin: 30px auto;
+  border: 1px solid #BDC3C7;
+  border-radius: 4px;
+  height: 46px;
+  display: block;
+  font-size: 20px;
+  padding: 5px 15px;
+}
+
+#select-country {
+  background-color: rgba(243, 243, 243, 0.6);
+}
+
+#submitButton {
+  display: block;
+  margin: 40px auto 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  height: 40px;
+  padding: 0 40px;
+  background: #03A678;
+  color: #fff;
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+#submitButton:disabled {
+  background: rgb(3, 166, 120, 0.6);
+}
+
+.app-footer {
+  position: absolute;
+  bottom: 0;
+  padding: 20px 0;
+  border-top: 1px solid #DADFE1;
+  width: calc(100% - 56px);
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: 12px;
+  color: #777;
+}
+
+a.footer-link {
+  color: #777;
+  border-bottom: 1px dashed #777;
+  text-decoration: none;
+}

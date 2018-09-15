@@ -6,82 +6,13 @@
 
     <meta name="Description" content="Send WhatsApp message to any phone number instead of saving the number as contact">
     <meta name=”keywords” content="WhatsApp, dialer, android, pwa" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no"/>
 
     <link rel="manifest" href="./manifest.json">
     <link rel="shortcut icon" href="./images/favicon/favicon-96x96.png" type="image/x-icon">
     <link rel="icon" href="./images/favicon/favicon-96x96.png" type="image/x-icon">
-    <style>
-      body {
-        font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
-        max-width: 100%;
-        padding: 20px;
-      }
-
-      #heading {
-        padding: 30px 0;
-        text-align: center;
-      }
-
-      hr {
-        margin-bottom: 140px;
-        color: #DADFE1;
-        border: none;
-        border-top: 1px solid #DADFE1;
-      }
-
-      #phoneNumber, #select-country {
-        width: 80%;
-        margin: 30px auto;
-        border: 1px solid #BDC3C7;
-        border-radius: 4px;
-        height: 46px;
-        display: block;
-        font-size: 20px;
-        padding: 5px 15px;
-      }
-
-      #select-country {
-        background-color: rgba(243, 243, 243, 0.6);
-      }
-
-      #submitButton {
-        display: block;
-        margin: 40px auto 20px;
-        border: none;
-        font-size: 16px;
-        border-radius: 4px;
-        height: 40px;
-        padding: 0 40px;
-        background: #03A678;
-        color: #fff;
-        box-shadow: none;
-        box-sizing: border-box;
-        cursor: pointer;
-      }
-
-      #submitButton:disabled {
-        background: rgb(3, 166, 120, 0.6);
-      }
-
-      .app-footer {
-        position: absolute;
-        bottom: 0;
-        padding: 20px 0;
-        border-top: 1px solid #DADFE1;
-        width: calc(100% - 56px);
-        box-sizing: border-box;
-        max-width: 100%;
-        font-size: 12px;
-        color: #777;
-      }
-
-      a.footer-link {
-        color: #777;
-        border-bottom: 1px dashed #777;
-        text-decoration: none;
-      }
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no"/>
+    
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
   </head>
   <body>
     <h1 id="heading">WhatsApp Dialer</h1>
@@ -103,43 +34,7 @@
       Now you can add this to your homescreen.
       <a class="footer-link" href="https://www.howtogeek.com/196087/how-to-add-websites-to-the-home-screen-on-any-smartphone-or-tablet/">Find the instructions here.</a>
     </footer>
-    <script>
-      (function() {
-        document.getElementById("submitButton")
-          .addEventListener("click", function(event) {
-            event.preventDefault();
-            const phoneNumber = document.getElementById("phoneNumber").value;
-            const countryCode = document.getElementById("select-country").value;
 
-            window.location.href = "https://api.whatsapp.com/send?phone=" + countryCode + phoneNumber;
-          });
-
-        fetch("./json/countries.json")
-          .then(response => response.json())
-          .then(countriesJson => {
-            fetch("https://json.geoiplookup.io")
-              .then(response => response.json())
-              .then(thisCountryJson => {
-                let thisCountryLetterCode = thisCountryJson["country_code"];
-
-                const selectField = document.getElementById("select-country");
-                while (selectField.firstChild) {
-                  selectField.removeChild(selectField.firstChild);
-                }
-
-                Object.keys(countriesJson)
-                  .forEach(countryLetterCode => {
-                    const country = countriesJson[countryLetterCode];
-                    const option = document.createElement("option");
-                    option.text = country.name + " (+" + country.code.replace(/\s/, "-") + ")" ;
-                    option.value = country.code.replace(/\s/, "");
-                    option.selected = (country.iso2 === thisCountryLetterCode);
-
-                    selectField.appendChild(option);
-                  });
-              });
-          });
-      })();
-    </script>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>
