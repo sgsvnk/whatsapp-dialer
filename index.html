@@ -62,6 +62,24 @@
       #submitButton:disabled {
         background: rgb(3, 166, 120, 0.6);
       }
+
+      .app-footer {
+        position: absolute;
+        bottom: 0;
+        padding: 20px 0;
+        border-top: 1px solid #DADFE1;
+        width: calc(100% - 56px);
+        box-sizing: border-box;
+        max-width: 100%;
+        font-size: 12px;
+        color: #777;
+      }
+
+      a.footer-link {
+        color: #777;
+        border-bottom: 1px dashed #777;
+        text-decoration: none;
+      }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no"/>
   </head>
@@ -79,6 +97,12 @@
 
       <button type="submit" id="submitButton">Send WhatsApp Message</button>
     </form>
+
+    <footer class="app-footer">
+      Like the app? ❤️ <br />
+      Now you can add this to your homescreen.
+      <a class="footer-link" href="https://www.howtogeek.com/196087/how-to-add-websites-to-the-home-screen-on-any-smartphone-or-tablet/">Find the instructions here.</a>
+    </footer>
     <script>
       (function() {
         document.getElementById("submitButton")
