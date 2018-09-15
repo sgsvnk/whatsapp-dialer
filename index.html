@@ -29,9 +29,9 @@
         border-top: 1px solid #DADFE1;
       }
 
-      #phoneNumber {
+      #phoneNumber, #select-country {
         width: 80%;
-        margin: 0 auto;
+        margin: 30px auto;
         border: 1px solid #BDC3C7;
         border-radius: 4px;
         height: 46px;
@@ -52,6 +52,11 @@
         color: #fff;
         box-shadow: none;
         box-sizing: border-box;
+        cursor: pointer;
+      }
+
+      #submitButton:disabled {
+        background: rgb(3, 166, 120, 0.6);
       }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no"/>
@@ -60,7 +65,13 @@
     <h1 id="heading">WhatsApp Dialer</h1>
     <hr />
     <form>
-      <input type="number" id="phoneNumber" placeholder="Enter a valid phone number"/>
+      <div class="number-row">
+        <select id="select-country">
+          <option value="">Loading countries...</option>
+        </select>
+
+        <input type="number" id="phoneNumber" placeholder="Enter a valid phone number" />
+      </div>
 
       <button type="submit" id="submitButton">Send WhatsApp Message</button>
     </form>
@@ -70,8 +81,35 @@
           .addEventListener("click", function(event) {
             event.preventDefault();
             const phoneNumber = document.getElementById("phoneNumber").value;
+            const countryCode = document.getElementById("select-country").value;
 
-            window.location.href = "https://api.whatsapp.com/send?phone=91" + phoneNumber;
+            window.location.href = "https://api.whatsapp.com/send?phone=" + countryCode + phoneNumber;
+          });
+
+        fetch("./json/countries.json")
+          .then(response => response.json())
+          .then(countriesJson => {
+            fetch("https://json.geoiplookup.io")
+              .then(response => response.json())
+              .then(thisCountryJson => {
+                let thisCountryLetterCode = thisCountryJson["country_code"];
+
+                const selectField = document.getElementById("select-country");
+                while (selectField.firstChild) {
+                  selectField.removeChild(selectField.firstChild);
+                }
+
+                Object.keys(countriesJson)
+                  .forEach(countryLetterCode => {
+                    const country = countriesJson[countryLetterCode];
+                    const option = document.createElement("option");
+                    option.text = country.name + " (+" + country.code.replace(/\s/, "-") + ")" ;
+                    option.value = country.code.replace(/\s/, "");
+                    option.selected = (country.iso2 === thisCountryLetterCode);
+
+                    selectField.appendChild(option);
+                  });
+              });
           });
       })();
     </script>
