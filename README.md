@@ -11,8 +11,11 @@
   - Make the app to work offline 
   - Cache the country codes list
 - Prompt for install the web app s
-- Support for other countries
+- [DONE] Support for other countries
 - Color browser address bar to match the theme color 
+- Support for version upgrades of PWA
+  - How to fetch new bundles from PWA? 
+    - Cache all the relevant files with an expiration time? 
 - Footer
   - Add a download android app button 
   - Add ios app build 

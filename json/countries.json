@@ -149,11 +149,6 @@
     "iso2": "BW",
     "code": "267"
   },
-  "BV": {
-    "name": "Bouvet Island",
-    "iso2": "BV",
-    "code": ""
-  },
   "BR": {
     "name": "Brazil",
     "iso2": "BR",
@@ -199,11 +194,6 @@
     "iso2": "CA",
     "code": "1"
   },
-  "IC": {
-    "name": "Canary Islands",
-    "iso2": "IC",
-    "code": ""
-  },
   "CV": {
     "name": "Cape Verde",
     "iso2": "CV",
@@ -218,11 +208,6 @@
     "name": "Central African Republic",
     "iso2": "CF",
     "code": "236"
-  },
-  "EA": {
-    "name": "Ceuta, Mulilla",
-    "iso2": "EA",
-    "code": ""
   },
   "TD": {
     "name": "Chad",
@@ -243,11 +228,6 @@
     "name": "Christmas Island",
     "iso2": "CX",
     "code": "61"
-  },
-  "CP": {
-    "name": "Clipperton Island",
-    "iso2": "CP",
-    "code": ""
   },
   "CC": {
     "name": "Cocos (Keeling) Islands",
@@ -313,11 +293,6 @@
     "name": "Denmark",
     "iso2": "DK",
     "code": "45"
-  },
-  "DG": {
-    "name": "Diego Garcia",
-    "iso2": "DG",
-    "code": ""
   },
   "DJ": {
     "name": "Djibouti",
@@ -419,11 +394,6 @@
     "iso2": "PF",
     "code": "689"
   },
-  "TF": {
-    "name": "French Southern Territories",
-    "iso2": "TF",
-    "code": ""
-  },
   "GA": {
     "name": "Gabon",
     "iso2": "GA",
@@ -484,11 +454,6 @@
     "iso2": "GT",
     "code": "502"
   },
-  "GG": {
-    "name": "Guernsey",
-    "iso2": "GG",
-    "code": ""
-  },
   "GN": {
     "name": "Guinea",
     "iso2": "GN",
@@ -508,11 +473,6 @@
     "name": "Haiti",
     "iso2": "HT",
     "code": "509"
-  },
-  "HM": {
-    "name": "Heard Island And McDonald Islands",
-    "iso2": "HM",
-    "code": ""
   },
   "HN": {
     "name": "Honduras",
@@ -899,11 +859,6 @@
     "iso2": "PH",
     "code": "63"
   },
-  "PN": {
-    "name": "Pitcairn",
-    "iso2": "PN",
-    "code": ""
-  },
   "PL": {
     "name": "Poland",
     "iso2": "PL",
@@ -1059,11 +1014,6 @@
     "iso2": "ZA",
     "code": "27"
   },
-  "GS": {
-    "name": "South Georgia And The South Sandwich Islands",
-    "iso2": "GS",
-    "code": ""
-  },
   "ES": {
     "name": "Spain",
     "iso2": "ES",
@@ -1179,11 +1129,6 @@
     "iso2": "TV",
     "code": "688"
   },
-  "SU": {
-    "name": "USSR",
-    "iso2": "SU",
-    "code": ""
-  },
   "UG": {
     "name": "Uganda",
     "iso2": "UG",
@@ -1204,20 +1149,10 @@
     "iso2": "GB",
     "code": "1 473"
   },
-  "UK": {
-    "name": "United Kingdom",
-    "iso2": "UK",
-    "code": ""
-  },
   "US": {
     "name": "United States",
     "iso2": "US",
     "code": "1"
-  },
-  "UM": {
-    "name": "United States Minor Outlying Islands",
-    "iso2": "UM",
-    "code": ""
   },
   "UY": {
     "name": "Uruguay",
