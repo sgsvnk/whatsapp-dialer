@@ -7,13 +7,21 @@ body {
 #heading {
   padding: 30px 0;
   text-align: center;
+  margin: 0 0 28px;
 }
 
 hr {
-  margin-bottom: 140px;
   color: #DADFE1;
   border: none;
   border-top: 1px solid #DADFE1;
+}
+
+.form-container {
+  margin: 0;
+}
+
+.number-row {
+  margin: calc(277px/3) auto;
 }
 
 #phoneNumber, #select-country {
@@ -33,12 +41,13 @@ hr {
 
 #submitButton {
   display: block;
-  margin: 40px auto 20px;
+  width: 80%;
+  height: 92px;
+  margin: 0 auto calc(277px/3);
   border: none;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 4px;
-  height: 40px;
-  padding: 0 40px;
+  padding: 0 10px;
   background: #03A678;
   color: #fff;
   box-shadow: none;
@@ -51,11 +60,8 @@ hr {
 }
 
 .app-footer {
-  position: absolute;
-  bottom: 0;
-  padding: 20px 0;
+  padding: 20px 0 0;
   border-top: 1px solid #DADFE1;
-  width: calc(100% - 56px);
   box-sizing: border-box;
   max-width: 100%;
   font-size: 12px;

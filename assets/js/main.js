@@ -1,4 +1,15 @@
 (function() {
+  const constHeightOfElements = 454;
+  const adjustFluidHeight = constHeightOfElements => {
+    const fluidHeightLeft = window.innerHeight - constHeightOfElements;
+    document.getElementsByClassName("number-row")[0].style.margin = `calc(${fluidHeightLeft}px/3) auto`;
+    document.getElementById("submitButton").style.margin = `0 auto calc(${fluidHeightLeft}px/3)`;
+  };
+
+  //styler
+  adjustFluidHeight(constHeightOfElements);
+
+  // click handler
   document.getElementById("submitButton")
     .addEventListener("click", function(event) {
       event.preventDefault();
@@ -13,6 +24,7 @@
       window.location.href = "https://api.whatsapp.com/send?phone=" + countryCode + phoneNumber;
     });
 
+  // fethcing countries
   fetch("./json/countries.json")
     .then(response => response.json())
     .then(countriesJson => {
