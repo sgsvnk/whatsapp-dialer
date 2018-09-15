@@ -3,6 +3,11 @@
     .addEventListener("click", function(event) {
       event.preventDefault();
       const phoneNumber = document.getElementById("phoneNumber").value;
+      if (!phoneNumber) {
+        alert("Please enter a valid phone number");
+        return;
+      }
+
       const countryCode = document.getElementById("select-country").value;
 
       window.location.href = "https://api.whatsapp.com/send?phone=" + countryCode + phoneNumber;
