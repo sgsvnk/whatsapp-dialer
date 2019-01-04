@@ -3,7 +3,7 @@
 
 [Use the web version here](http://sgsvenkatesh.github.io/whatsapp-dialer)
 
-[Download the Android APK here](https://github.com/sgsvenkatesh/whatsapp-dialer/raw/master/whatsappany/APK/whatsappany_v0.1.apk) - credits to [@yuva2811](https://github.com/ykakarap)
+[Download the Android APK here](https://github.com/sgsvenkatesh/whatsapp-dialer/raw/master/whatsappany/APK/whatsappany_v0.1.apk) - credits to [@ykakarap](https://github.com/ykakarap)
 
 #### ToDo:
 - Register a service worker for offline caching
