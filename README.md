@@ -6,6 +6,7 @@
 [Download the Android APK here](https://github.com/sgsvnk/whatsapp-dialer/raw/master/whatsappany/APK/whatsappany_v0.1.apk) - credits to [@ykakarap](https://github.com/ykakarap)
 
 #### ToDo:
+- Make countries mapping offline (there seems to be an issue with the API lately)
 - Register a service worker for offline caching
 - Configure a service worker to enable webAPK installation
   - Make the app to work offline 
