@@ -1,39 +1,111 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>
-      WhatsApp Dialer
-    </title>
+    <meta charset="utf-8" />
+    <title>WhatsApp Dialer — Message Any Number Without Saving a Contact</title>
 
-    <meta name="Description" content="Send WhatsApp message to any phone number instead of saving the number as contact">
-    <meta name=”keywords” content="WhatsApp, dialer, android, pwa" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no"/>
+    <meta name="description" content="Free WhatsApp Dialer: open a chat with any phone number without saving it as a contact. Paste a number with country code and start messaging on WhatsApp instantly." />
+    <meta name="keywords" content="WhatsApp dialer, message unsaved number, WhatsApp without saving contact, click to chat, WhatsApp API, send WhatsApp message" />
+    <meta name="author" content="sgsvnk" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#25D366" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b141a" media="(prefers-color-scheme: dark)" />
 
-    <link rel="manifest" href="./manifest.json?timestamp=1536990017320">
-    <link rel="shortcut icon" href="./images/favicon/favicon-96x96.png" type="image/x-icon">
-    <link rel="icon" href="./images/favicon/favicon-96x96.png" type="image/x-icon">
-    
-    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css?timestamp=1536990017320">
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sgsvnk.github.io/whatsapp-dialer/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WhatsApp Dialer" />
+    <meta property="og:title" content="WhatsApp Dialer — Message Any Number Without Saving a Contact" />
+    <meta property="og:description" content="Open a WhatsApp chat with any phone number without saving it as a contact. Paste a number with its country code and start messaging instantly." />
+    <meta property="og:url" content="https://sgsvnk.github.io/whatsapp-dialer/" />
+    <meta property="og:image" content="https://sgsvnk.github.io/whatsapp-dialer/images/favicons/android-chrome-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="WhatsApp Dialer logo" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WhatsApp Dialer — Message Any Number Without Saving a Contact" />
+    <meta name="twitter:description" content="Open a WhatsApp chat with any phone number without saving it as a contact. Paste a number with its country code and start messaging instantly." />
+    <meta name="twitter:image" content="https://sgsvnk.github.io/whatsapp-dialer/images/favicons/android-chrome-512x512.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "WhatsApp Dialer",
+        "url": "https://sgsvnk.github.io/whatsapp-dialer/",
+        "description": "Open a WhatsApp chat with any phone number without saving it as a contact. Paste a number with its country code and start messaging instantly.",
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/x-icon" href="./images/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="./images/favicons/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
   </head>
   <body>
-    <h1 id="heading">WhatsApp Dialer</h1>
-    <hr />
-    <form class="form-container">
-      <div class="number-row">
-        <select id="select-country">
-          <option value="">Loading countries...</option>
-        </select>
-
-        <input type="number" id="phoneNumber" placeholder="Enter valid WhatsApp number" />
+    <header class="app-header">
+      <img class="app-logo" src="./images/favicons/android-chrome-192x192.png" alt="WhatsApp Dialer logo" />
+      <div class="app-titles">
+        <h1 class="app-title">WhatsApp Dialer</h1>
+        <p class="app-tagline">Message any number without saving it as a contact</p>
       </div>
+    </header>
 
-      <button type="submit" id="submitButton">Send WhatsApp Message &nbsp;&rarr;</button>
-    </form>
+    <main class="app-main">
+      <form class="dial-card" id="dialForm" novalidate>
+        <label class="field-label" for="phoneNumber">Phone number</label>
+
+        <div class="input-row">
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="+91 98765 43210"
+            aria-describedby="dialHint"
+          />
+          <button type="button" id="pasteButton" class="paste-button" title="Paste from clipboard" aria-label="Paste number from clipboard">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+            </svg>
+          </button>
+        </div>
+
+        <p class="field-hint" id="dialHint">Include the country code, e.g. +1 or +91. Spaces and hyphens are fine.</p>
+
+        <button type="submit" id="submitButton" class="submit-button">
+          Send WhatsApp Message <span aria-hidden="true">&rarr;</span>
+        </button>
+      </form>
+    </main>
 
     <footer class="app-footer">
-      Use this often? ❤️ <br />
-      <a class="footer-link" href="https://www.howtogeek.com/196087/how-to-add-websites-to-the-home-screen-on-any-smartphone-or-tablet/">Click to find how you can add this to your homescreen.</a>
+      <span class="footer-love">Use this often? <span aria-hidden="true">❤️</span></span>
+      <nav class="footer-links">
+        <a class="footer-link" href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">Add to your home screen</a>
+        <a class="footer-link" href="https://github.com/sgsvnk/whatsapp-dialer" target="_blank" rel="noopener">View on GitHub</a>
+      </nav>
     </footer>
 
-    <script src="./assets/js/main.js?timestamp=1536990017320"></script>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

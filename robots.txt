@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sgsvnk.github.io/whatsapp-dialer/sitemap.xml

@@ -1,53 +1,59 @@
-(function() {
-  const constHeightOfElements = 439;
-  const adjustFluidHeight = constHeightOfElements => {
-    const fluidHeightLeft = window.innerHeight - constHeightOfElements;
-    document.getElementsByClassName("number-row")[0].style.margin = `calc(${fluidHeightLeft}px/3) auto`;
-    document.getElementById("submitButton").style.margin = `0 auto calc(${fluidHeightLeft}px/3)`;
+(function () {
+  const form = document.getElementById("dialForm");
+  const phoneInput = document.getElementById("phoneNumber");
+  const hint = document.getElementById("dialHint");
+  const pasteButton = document.getElementById("pasteButton");
+
+  const defaultHint = hint.textContent;
+
+  const setHint = (message, isError) => {
+    hint.textContent = message;
+    hint.classList.toggle("is-error", Boolean(isError));
   };
 
-  //styler
-  adjustFluidHeight(constHeightOfElements);
+  const clearError = () => {
+    if (hint.classList.contains("is-error")) {
+      setHint(defaultHint, false);
+    }
+  };
 
-  // click handler
-  document.getElementById("submitButton")
-    .addEventListener("click", function(event) {
-      event.preventDefault();
-      const phoneNumber = document.getElementById("phoneNumber").value;
-      if (!phoneNumber) {
-        alert("Please enter a valid phone number");
-        return;
-      }
+  phoneInput.addEventListener("input", clearError);
 
-      const countryCode = document.getElementById("select-country").value;
+  // Strip everything except digits (removes +, spaces, hyphens, parentheses).
+  const cleanNumber = value => value.replace(/\D/g, "");
 
-      window.location.href = "https://api.whatsapp.com/send?phone=" + countryCode + phoneNumber;
-    });
+  // Submit -> clean the number and hand it to the WhatsApp Web API.
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const cleaned = cleanNumber(phoneInput.value);
 
-  // fethcing countries
-  fetch("./json/countries.json")
-    .then(response => response.json())
-    .then(countriesJson => {
-      fetch("https://json.geoiplookup.io")
-        .then(response => response.json())
-        .then(thisCountryJson => {
-          let thisCountryLetterCode = thisCountryJson["country_code"];
+    if (!cleaned) {
+      setHint("Please enter a valid WhatsApp number, including the country code.", true);
+      phoneInput.focus();
+      return;
+    }
 
-          const selectField = document.getElementById("select-country");
-          while (selectField.firstChild) {
-            selectField.removeChild(selectField.firstChild);
-          }
+    window.location.href = "https://api.whatsapp.com/send?phone=" + cleaned;
+  });
 
-          Object.keys(countriesJson)
-            .forEach(countryLetterCode => {
-              const country = countriesJson[countryLetterCode];
-              const option = document.createElement("option");
-              option.text = country.name + " (+" + country.code.replace(/\s/, "-") + ")" ;
-              option.value = country.code.replace(/\s/, "");
-              option.selected = (country.iso2 === thisCountryLetterCode);
+  // Paste button -> load the number from the clipboard.
+  pasteButton.addEventListener("click", function () {
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      setHint("Clipboard access isn't available in this browser. Please paste manually.", true);
+      phoneInput.focus();
+      return;
+    }
 
-              selectField.appendChild(option);
-            });
-        });
-    });
+    navigator.clipboard
+      .readText()
+      .then(text => {
+        phoneInput.value = text.trim();
+        phoneInput.focus();
+        clearError();
+      })
+      .catch(() => {
+        setHint("Couldn't read the clipboard. Please paste manually.", true);
+        phoneInput.focus();
+      });
+  });
 })();

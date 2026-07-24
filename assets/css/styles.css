@@ -1,76 +1,271 @@
+:root {
+  --accent: #25d366;
+  --accent-strong: #128c7e;
+  --accent-contrast: #ffffff;
+
+  --bg: #f2f4f5;
+  --surface: #ffffff;
+  --text: #1f2c34;
+  --text-muted: #667781;
+  --border: #e2e6e9;
+  --input-bg: #ffffff;
+  --error: #d64545;
+  --shadow: 0 10px 30px rgba(15, 23, 28, 0.08);
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b141a;
+    --surface: #131c22;
+    --text: #e9edef;
+    --text-muted: #8696a0;
+    --border: #26343d;
+    --input-bg: #0f191f;
+    --error: #f4a0a0;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
-  max-width: 100%;
-  padding: 20px 20px 8px;
-}
-
-#heading {
-  padding: 30px 0;
-  text-align: center;
-  margin: 0 0 28px;
-}
-
-hr {
-  color: #DADFE1;
-  border: none;
-  border-top: 1px solid #DADFE1;
-}
-
-.form-container {
   margin: 0;
 }
 
-.number-row {
-  margin: calc(277px/3) auto;
+body {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-#phoneNumber, #select-country {
-  width: 80%;
-  margin: 30px auto;
-  border: 1px solid #BDC3C7;
-  border-radius: 4px;
-  height: 46px;
+/* ---------- Header ---------- */
+.app-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.app-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex: 0 0 auto;
+}
+
+.app-titles {
+  min-width: 0;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.app-tagline {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+/* ---------- Main / card ---------- */
+.app-main {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.dial-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+}
+
+.field-label {
   display: block;
-  font-size: 17px;
-  padding: 5px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
 }
 
-#select-country {
-  background-color: rgba(243, 243, 243, 0.6);
+.input-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
 }
 
-#submitButton {
-  display: block;
-  width: 80%;
-  height: 92px;
-  margin: 0 auto calc(277px/3);
-  border: none;
+#phoneNumber {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 52px;
+  padding: 0 16px;
   font-size: 17px;
-  border-radius: 4px;
-  padding: 0 10px;
-  background: #03A678;
-  color: #fff;
-  box-shadow: none;
-  box-sizing: border-box;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#phoneNumber::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+#phoneNumber:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.18);
+}
+
+.paste-button {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
-#submitButton:disabled {
-  background: rgb(3, 166, 120, 0.6);
+.paste-button:hover,
+.paste-button:focus-visible {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  outline: none;
 }
 
+.paste-button:active {
+  transform: translateY(1px);
+}
+
+.field-hint {
+  margin: 10px 2px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.field-hint.is-error {
+  color: var(--error);
+}
+
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 54px;
+  margin-top: 22px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.submit-button:hover,
+.submit-button:focus-visible {
+  background: var(--accent-strong);
+  outline: none;
+}
+
+.submit-button:active {
+  transform: translateY(1px);
+}
+
+/* ---------- Footer ---------- */
 .app-footer {
-  padding: 12px 0 0;
-  border-top: 1px solid #DADFE1;
-  box-sizing: border-box;
-  max-width: 100%;
-  font-size: 12px;
-  color: #777;
-  line-height: 20px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 18px;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
-a.footer-link {
-  color: #777;
-  border-bottom: 1px dashed #777;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.footer-link {
+  color: var(--text-muted);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--accent-strong);
+  border-bottom-color: var(--accent);
+  outline: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 14px 16px;
+  }
+
+  .app-title {
+    font-size: 18px;
+  }
+
+  .app-main {
+    padding: 16px;
+  }
+
+  .dial-card {
+    padding: 22px 18px;
+  }
+
+  .app-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+  }
 }
