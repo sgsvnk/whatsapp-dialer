@@ -24,6 +24,7 @@
   const cleanNumber = value => value.replace(/\D/g, "");
 
   const sendMessage = cleanedNumber => {
+    phoneInput.value = "";
     window.location.href = "https://api.whatsapp.com/send?phone=" + cleanedNumber;
   };
 
