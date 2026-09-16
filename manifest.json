@@ -1,6 +1,6 @@
 {
   "name": "WhatsApp Dialer",
-  "short_name": "WA Dialer",
+  "short_name": "WhatsApp Dialer",
   "description": "Send a WhatsApp message to any number without saving it as a contact.",
   "start_url": "/whatsapp-dialer/",
   "scope": "/whatsapp-dialer/",
