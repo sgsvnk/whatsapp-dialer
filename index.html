@@ -8,8 +8,8 @@
     <meta name="keywords" content="WhatsApp dialer, message unsaved number, WhatsApp without saving contact, click to chat, WhatsApp API, send WhatsApp message" />
     <meta name="author" content="sgsvnk" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#25D366" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b141a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f3f2f2" media="(prefers-color-scheme: light)" id="themeColorLight" />
+    <meta name="theme-color" content="#171615" media="(prefers-color-scheme: dark)" id="themeColorDark" />
 
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
@@ -57,53 +57,114 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="./images/favicons/apple-touch-icon.png" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap"
+    />
+
     <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+
+    <!-- Not deferred: it must apply a stored theme before the first paint. -->
+    <script src="./assets/js/theme.js"></script>
   </head>
   <body>
     <header class="app-header">
       <img class="app-logo" src="./images/favicons/android-chrome-192x192.png" alt="WhatsApp Dialer logo" />
-      <div class="app-titles">
-        <h1 class="app-title">WhatsApp Dialer</h1>
-        <p class="app-tagline">Message any number without saving it as a contact</p>
+      <div class="app-brand">
+        <span class="app-brand-mark">WhatsApp</span><span class="app-brand-word">Dialer</span>
+      </div>
+
+      <div class="theme-switch" id="themeSwitch" role="radiogroup" aria-label="Colour theme">
+        <label class="theme-opt" title="Match system">
+          <input type="radio" name="theme" value="auto" checked />
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" stroke="none" />
+          </svg>
+          <span class="sr-only">Match system</span>
+        </label>
+        <label class="theme-opt" title="Light">
+          <input type="radio" name="theme" value="light" />
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <span class="sr-only">Light</span>
+        </label>
+        <label class="theme-opt" title="Dark">
+          <input type="radio" name="theme" value="dark" />
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+          </svg>
+          <span class="sr-only">Dark</span>
+        </label>
       </div>
     </header>
+    <div class="rule"></div>
 
     <main class="app-main">
-      <form class="dial-card" id="dialForm" novalidate>
-        <label class="field-label" for="phoneNumber">Phone number</label>
-
-        <div class="input-row">
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            inputmode="tel"
-            autocomplete="tel"
-            placeholder="+91 98765 43210"
-            aria-describedby="dialHint"
-          />
-          <button type="button" id="pasteButton" class="paste-button" title="Paste from clipboard" aria-label="Paste number from clipboard">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-            </svg>
-          </button>
-        </div>
-
-        <p class="field-hint" id="dialHint">Include the country code, e.g. +1 or +91. Spaces and hyphens are fine.</p>
-
-        <button type="submit" id="submitButton" class="submit-button">
-          Send WhatsApp Message <span aria-hidden="true">&rarr;</span>
-        </button>
-      </form>
+      <div class="poster-wrap">
+        <h1 class="poster">WhatsApp<br />any<br /><span class="poster-accent">number.</span></h1>
+        <p class="poster-sub">No saving, no searching. Paste a number with its country code and go.</p>
+      </div>
     </main>
 
+    <form class="dial-form" id="dialForm" novalidate>
+      <label class="field-label" for="phoneNumber">Phone number</label>
+
+      <input
+        type="tel"
+        id="phoneNumber"
+        name="phoneNumber"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="+91 98765 43210"
+        aria-describedby="dialHint"
+      />
+
+      <div class="action-row">
+        <button type="button" id="pasteButton" class="paste-button" title="Paste from clipboard" aria-label="Paste number from clipboard">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+          </svg>
+        </button>
+        <button type="submit" id="submitButton" class="submit-button">
+          Send
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <p class="field-hint" id="dialHint">Send with an empty field pulls the number from your clipboard.</p>
+    </form>
+
+    <div class="rule"></div>
     <footer class="app-footer">
-      <span class="footer-love">Use this often? <span aria-hidden="true">❤️</span></span>
-      <nav class="footer-links">
-        <a class="footer-link" href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">Add to your home screen</a>
-        <a class="footer-link" href="https://github.com/sgsvnk/whatsapp-dialer" target="_blank" rel="noopener">View on GitHub</a>
-      </nav>
+      <a class="footer-cell" href="https://support.google.com/chrome/answer/9658361?hl=en&amp;co=GENIE.Platform%3DAndroid" target="_blank" rel="noopener">
+        <span>
+          <span class="footer-kicker">Install</span>
+          <span class="footer-title">Add to home screen</span>
+        </span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
+      <a class="footer-cell" href="https://github.com/sgsvnk/whatsapp-dialer" target="_blank" rel="noopener">
+        <span>
+          <span class="footer-kicker">Source</span>
+          <span class="footer-title">View on GitHub</span>
+        </span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg>
+      </a>
     </footer>
 
     <script src="./assets/js/main.js"></script>

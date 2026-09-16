@@ -9,6 +9,7 @@
   const setHint = (message, isError) => {
     hint.textContent = message;
     hint.classList.toggle("is-error", Boolean(isError));
+    phoneInput.classList.toggle("is-error", Boolean(isError));
   };
 
   const clearError = () => {
@@ -22,38 +23,56 @@
   // Strip everything except digits (removes +, spaces, hyphens, parentheses).
   const cleanNumber = value => value.replace(/\D/g, "");
 
-  // Submit -> clean the number and hand it to the WhatsApp Web API.
+  const sendMessage = cleanedNumber => {
+    window.location.href = "https://api.whatsapp.com/send?phone=" + cleanedNumber;
+  };
+
+  // Reads the clipboard and hands the text back, or reports why it couldn't.
+  const readClipboard = () => {
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      setHint("Clipboard access isn't available in this browser. Please paste manually.", true);
+      phoneInput.focus();
+      return Promise.reject();
+    }
+
+    return navigator.clipboard.readText().catch(() => {
+      setHint("Couldn't read the clipboard. Please paste manually.", true);
+      phoneInput.focus();
+      return Promise.reject();
+    });
+  };
+
+  // Submit -> clean the number and hand it to the WhatsApp Web API. An empty
+  // field falls back to the clipboard, as the hint under the button promises.
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    const cleaned = cleanNumber(phoneInput.value);
+    const typedNumber = cleanNumber(phoneInput.value);
 
-    if (!cleaned) {
-      setHint("Please enter a valid WhatsApp number, including the country code.", true);
-      phoneInput.focus();
+    if (typedNumber) {
+      sendMessage(typedNumber);
       return;
     }
 
-    window.location.href = "https://api.whatsapp.com/send?phone=" + cleaned;
+    readClipboard().then(text => {
+      const cleaned = cleanNumber(text);
+
+      if (!cleaned) {
+        setHint("Enter a number with its country code, or copy one first.", true);
+        phoneInput.focus();
+        return;
+      }
+
+      clearError();
+      sendMessage(cleaned);
+    }, () => {});
   });
 
   // Paste button -> load the number from the clipboard.
   pasteButton.addEventListener("click", function () {
-    if (!navigator.clipboard || !navigator.clipboard.readText) {
-      setHint("Clipboard access isn't available in this browser. Please paste manually.", true);
+    readClipboard().then(text => {
+      phoneInput.value = text.trim();
       phoneInput.focus();
-      return;
-    }
-
-    navigator.clipboard
-      .readText()
-      .then(text => {
-        phoneInput.value = text.trim();
-        phoneInput.focus();
-        clearError();
-      })
-      .catch(() => {
-        setHint("Couldn't read the clipboard. Please paste manually.", true);
-        phoneInput.focus();
-      });
+      clearError();
+    }, () => {});
   });
 })();

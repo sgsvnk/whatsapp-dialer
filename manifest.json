@@ -6,8 +6,8 @@
   "scope": "/whatsapp-dialer/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#25D366",
-  "background_color": "#ffffff",
+  "theme_color": "#f3f2f2",
+  "background_color": "#f3f2f2",
   "icons": [
     {
       "src": "./images/favicons/android-chrome-192x192.png",
